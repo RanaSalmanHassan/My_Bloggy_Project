@@ -1,0 +1,41 @@
+{%extends 'base.html'%}
+
+{%block titleblock%}
+Profile Page
+{%endblock%}
+
+{%block bodyblock%}
+
+<div class="row">
+    <div class="col-sm-5">
+        {%if user.user_profile.profile_pic%}
+        <img src="/media/{{user.user_profile.profile_pic}}" height="100" width="150">
+        {%else%}
+        <img src="/media/profile_pic/download.png" height="100" width="150">
+        {%endif%}
+    </div>
+
+
+
+
+</div>
+
+<div class="row">
+    <div class="col-sm-3">
+        Username: {{user.username}}
+        <br>
+        Name: {{user.user_profile.name}}
+        <br>
+        Phone Number: {{user.user_profile.phone_number}}
+        <br>
+        Location: {{user.user_profile.location}}
+       
+
+
+    </div>
+
+
+
+</div>
+<a href="{%url 'loginapp:update_profile'%}">Edit Profile</a>
+{%endblock%}

@@ -1,0 +1,25 @@
+{%extends 'base.html'%}
+
+{%block titleblock%}
+Bloggy Home
+{%endblock%}
+
+{%block bodyblock%}
+
+{%for x in object_list%}
+
+<div class="card" style="width: 18rem;">
+    <img src="/media/{{x.blog_pic}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Title : {{x.title}}</h5>
+      <p class="card-text">Author : {{x.author}}</p>
+      <p class="card-text">Created at : {{x.created_at}}</p>
+      <a href="{%url 'blogapp:blogdetails' pk=x.pk%}" class="btn btn-primary">Read</a>
+    </div>
+  </div>
+  {%endfor%}
+
+
+
+
+{%endblock%}

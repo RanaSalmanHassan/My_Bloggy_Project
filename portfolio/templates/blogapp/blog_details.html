@@ -1,0 +1,43 @@
+{%extends 'base.html'%}
+
+{%block titleblock%}
+Blog Details
+{%endblock%}
+
+{%block bodyblock%}
+<!-- <h1>BLOGS DETAILS: </h1> -->
+
+<div class="row">
+    <div class="col-sm-3">
+        <h3><u>{{object.title}}</u></h3>
+        <h5>Author : {{object.author}}</h5>
+        <p>Created at : {{object.created_at}}</p>
+        <br>
+        <img src="/media/{{object.blog_pic}}" height="300" width="300">
+        {{object.content}}
+
+       
+        <!-- <div class="section">
+            <h3>COMMENTS : </h3>
+            <form method="post" enctype="multipart/form-data">
+                {%csrf_token%}
+                {{form}}
+                <button type="submit">Create!</button>
+            
+            </form> -->
+            <!-- {{object.blog_comment.comment}} -->
+
+
+        <!-- </div> --> 
+        
+
+      
+
+
+    </div>
+
+
+
+</div>
+
+{%endblock%}

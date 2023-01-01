@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+
+{%block titleblock%}
+Searched Blogs
+{%endblock%}
+
+{%block bodyblock%}
+
+{%for blog in searched_blogs%}
+
+<div class="card" style="width: 18rem;">
+    <img src="/media/{{blog.blog_pic}}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Title : {{blog.title}}</h5>
+        <p class="card-text">Author : {{blog.author}}</p>
+        <p class="card-text">Created at : {{blog.created_at}}</p>
+        <a href="{%url 'blogapp:blogdetails' pk=blog.pk%}" class="btn btn-primary">Read</a>
+    </div>
+</div>
+
+{%endfor%}
+{%endblock%}
