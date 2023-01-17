@@ -13,9 +13,11 @@ MY BLOGS
     <div class="card-body">
         <h5 class="card-title">Title : {{x.title}}</h5>
         <p class="card-text">Author : {{x.author}}</p>
+        <p class="card-text">Category : {{x.category}}</p>
         <p class="card-text">Created at : {{x.created_at}}</p>
         <a href="{%url 'blogapp:blogdetails' pk=x.pk%}" class="btn btn-primary">Read</a>
         <a href="{%url 'blogapp:edit_blog' pk=x.pk%}" class="btn btn-warning">Edit Blog</a>
+        <a href="{%url 'blogapp:delete_blog' pk=x.pk%}" class="btn btn-danger">Delete Blog</a>
     </div>
 </div>
 {%endfor%}

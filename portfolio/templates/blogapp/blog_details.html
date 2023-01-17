@@ -7,31 +7,21 @@ Blog Details
 {%block bodyblock%}
 <!-- <h1>BLOGS DETAILS: </h1> -->
 
-<div class="row">
-    <div class="col-sm-3">
-        <h3><u>{{object.title}}</u></h3>
-        <h5>Author : {{object.author}}</h5>
-        <p>Created at : {{object.created_at}}</p>
+<div class="container">
+    <div class="container">
+        <h3><u><b>{{blog_model.title}}</b></u></h3>
+        <h5>Author : {{blog_model.author}}</h5>
+        <p>Category : {{blog_model.category}}</p>
+        <p>Created at : {{blog_model.created_at}}</p>
         <br>
-        <img src="/media/{{object.blog_pic}}" height="300" width="300">
-        {{object.content}}
+        <img src="/media/{{blog_model.blog_pic}}" height="500" width="500">
+        <br>
+        <br>
+        <div class="container">
+            <p>{{blog_model.content}}</p>
 
-       
-        <!-- <div class="section">
-            <h3>COMMENTS : </h3>
-            <form method="post" enctype="multipart/form-data">
-                {%csrf_token%}
-                {{form}}
-                <button type="submit">Create!</button>
-            
-            </form> -->
-            <!-- {{object.blog_comment.comment}} -->
+        </div>
 
-
-        <!-- </div> --> 
-        
-
-      
 
 
     </div>
@@ -40,4 +30,32 @@ Blog Details
 
 </div>
 
+{%if user.is_authenticated%}
+<div class="container">
+    <h4><b><i><u>Comments Section: </u></i></b></h4>
+    <div class="container">
+        <form method="post">
+            {%csrf_token%}
+            {{form.as_p}}
+            <button class="btn btn-outline-dark" type="submit">Comment!!</button>
+        </form>
+    
+    <div class="container">
+        {%for comment in comment_model%}
+        <h6><b><u>{{comment.user}}</u></b></h6>
+        <p>{{comment.comment}}</p>
+        {%empty%}
+        <p><b>No Comments!</b></p>
+        {%endfor%}
+
+
+    </div>
+
+    </div>
+
+
+
+
+</div>
+{%endif%}
 {%endblock%}

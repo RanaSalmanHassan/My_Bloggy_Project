@@ -6,18 +6,405 @@ Bloggy Home
 
 {%block bodyblock%}
 
-{%for x in object_list%}
 
-<div class="card" style="width: 18rem;">
+
+
+
+<!-- Buissness Blogs -->
+
+
+<div class="container">
+  <h1><b><i>Buissness : </i></b></h1>
+  {%for x in buissness_blogs%}
+  <div class="row" display="flex">
+  <div class="card" style="width: 18rem;">
     <img src="/media/{{x.blog_pic}}" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">Title : {{x.title}}</h5>
       <p class="card-text">Author : {{x.author}}</p>
+      <p class="card-text">Category : {{x.category}}</p>
       <p class="card-text">Created at : {{x.created_at}}</p>
       <a href="{%url 'blogapp:blogdetails' pk=x.pk%}" class="btn btn-primary">Read</a>
     </div>
   </div>
-  {%endfor%}
+  </div>
+    
+
+  </div>
+
+
+
+</div>
+{%empty%}
+<h1>None!</h1>
+{%if user.is_authenticated%}
+<p><a href="{%url 'blogapp:create_blog'%}"><button class="btn btn-outline-info">Add One!</button></a> </p>
+{%endif%}
+{%endfor%}
+<br>
+<br>
+
+<!-- Technology Blogs -->
+
+
+<div class="container">
+  <h1><b><i>Technology : </i></b></h1>
+  {%for x in technology_blogs%}
+  <div class="row" display="flex">
+    <div class="card" style="width: 18rem;">
+      <img src="/media/{{x.blog_pic}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Title : {{x.title}}</h5>
+        <p class="card-text">Author : {{x.author}}</p>
+        <p class="card-text">Category : {{x.category}}</p>
+        <p class="card-text">Created at : {{x.created_at}}</p>
+        <a href="{%url 'blogapp:blogdetails' pk=x.pk%}" class="btn btn-primary">Read</a>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+</div>
+{%empty%}
+<h1>None!</h1>
+{%if user.is_authenticated%}
+<p><a href="{%url 'blogapp:create_blog'%}"><button class="btn btn-outline-info">Add One!</button></a> </p>
+{%endif%}
+{%endfor%}
+<br>
+<br>
+
+
+<!-- Health Blogs -->
+
+
+<div class="container">
+  <h1><b><i>Health : </i></b></h1>
+  {%for x in health_blogs%}
+  <div class="row" display="flex">
+    <div class="card" style="width: 18rem;">
+      <img src="/media/{{x.blog_pic}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Title : {{x.title}}</h5>
+        <p class="card-text">Author : {{x.author}}</p>
+        <p class="card-text">Category : {{x.category}}</p>
+        <p class="card-text">Created at : {{x.created_at}}</p>
+        <a href="{%url 'blogapp:blogdetails' pk=x.pk%}" class="btn btn-primary">Read</a>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+
+</div>
+{%empty%}
+<h1>NONE</h1>
+{%if user.is_authenticated%}
+<p><a href="{%url 'blogapp:create_blog'%}"><button class="btn btn-outline-info">Add One!</button></a> </p>
+{%endif%}
+{%endfor%}
+<br>
+<br>
+
+
+<!-- Fitness Blogs -->
+
+
+<div class="container">
+  <h1><b><i>Fitness : </i></b></h1>
+  {%for x in fitness_blogs%}
+  <div class="row" display="flex">
+    <div class="card" style="width: 18rem;">
+      <img src="/media/{{x.blog_pic}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Title : {{x.title}}</h5>
+        <p class="card-text">Author : {{x.author}}</p>
+        <p class="card-text">Category : {{x.category}}</p>
+        <p class="card-text">Created at : {{x.created_at}}</p>
+        <a href="{%url 'blogapp:blogdetails' pk=x.pk%}" class="btn btn-primary">Read</a>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+
+</div>
+{%empty%}
+<h1>NONE</h1>
+{%if user.is_authenticated%}
+<p><a href="{%url 'blogapp:create_blog'%}"><button class="btn btn-outline-info">Add One!</button></a> </p>
+{%endif%}
+{%endfor%}
+<br>
+<br>
+
+
+
+
+
+<!-- Science Blogs -->
+
+
+<div class="container">
+  <h1><b><i>Science : </i></b></h1>
+  {%for x in science_blogs%}
+  <div class="row" display="flex">
+    <div class="card" style="width: 18rem;">
+      <img src="/media/{{x.blog_pic}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Title : {{x.title}}</h5>
+        <p class="card-text">Author : {{x.author}}</p>
+        <p class="card-text">Category : {{x.category}}</p>
+        <p class="card-text">Created at : {{x.created_at}}</p>
+        <a href="{%url 'blogapp:blogdetails' pk=x.pk%}" class="btn btn-primary">Read</a>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+</div>
+{%empty%}
+<h1>NONE</h1>
+{%if user.is_authenticated%}
+<p><a href="{%url 'blogapp:create_blog'%}"><button class="btn btn-outline-info">Add One!</button></a> </p>
+{%endif%}
+{%endfor%}
+<br>
+<br>
+
+
+
+<!-- Education Blogs -->
+
+
+<div class="container">
+  <h1><b><i>Education : </i></b></h1>
+  {%for x in education_blogs%}
+  <div class="row" display="flex">
+    <div class="card" style="width: 18rem;">
+      <img src="/media/{{x.blog_pic}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Title : {{x.title}}</h5>
+        <p class="card-text">Author : {{x.author}}</p>
+        <p class="card-text">Category : {{x.category}}</p>
+        <p class="card-text">Created at : {{x.created_at}}</p>
+        <a href="{%url 'blogapp:blogdetails' pk=x.pk%}" class="btn btn-primary">Read</a>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+</div>
+{%empty%}
+<h1>NONE</h1>
+{%if user.is_authenticated%}
+<p><a href="{%url 'blogapp:create_blog'%}"><button class="btn btn-outline-info">Add One!</button></a> </p>
+{%endif%}
+{%endfor%}
+<br>
+<br>
+
+
+<!-- News Blogs -->
+
+
+<div class="container">
+  <h1><b><i>News : </i></b></h1>
+  {%for x in news_blogs%}
+  <div class="row" display="flex">
+    <div class="card" style="width: 18rem;">
+      <img src="/media/{{x.blog_pic}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Title : {{x.title}}</h5>
+        <p class="card-text">Author : {{x.author}}</p>
+        <p class="card-text">Category : {{x.category}}</p>
+        <p class="card-text">Created at : {{x.created_at}}</p>
+        <a href="{%url 'blogapp:blogdetails' pk=x.pk%}" class="btn btn-primary">Read</a>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+</div>
+{%empty%}
+<h1>NONE</h1>
+{%if user.is_authenticated%}
+<p><a href="{%url 'blogapp:create_blog'%}"><button class="btn btn-outline-info">Add One!</button></a> </p>
+{%endif%}
+{%endfor%}
+<br>
+<br>
+
+
+
+<!-- Entertainment Blogs -->
+
+
+<div class="container">
+  <h1><b><i>Entertainment : </i></b></h1>
+  {%for x in entertainment_blogs%}
+  <div class="row" display="flex">
+    <div class="card" style="width: 18rem;">
+      <img src="/media/{{x.blog_pic}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Title : {{x.title}}</h5>
+        <p class="card-text">Author : {{x.author}}</p>
+        <p class="card-text">Category : {{x.category}}</p>
+        <p class="card-text">Created at : {{x.created_at}}</p>
+        <a href="{%url 'blogapp:blogdetails' pk=x.pk%}" class="btn btn-primary">Read</a>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+</div>
+{%empty%}
+<h1>NONE</h1>
+{%if user.is_authenticated%}
+<p><a href="{%url 'blogapp:create_blog'%}"><button class="btn btn-outline-info">Add One!</button></a> </p>
+{%endif%}
+{%endfor%}
+<br>
+<br>
+
+
+<!-- Gaming Blogs -->
+
+
+<div class="container">
+  <h1><b><i>Gaming : </i></b></h1>
+  {%for x in gaming_blogs%}
+  <div class="row" display="flex">
+    <div class="card" style="width: 18rem;">
+      <img src="/media/{{x.blog_pic}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Title : {{x.title}}</h5>
+        <p class="card-text">Author : {{x.author}}</p>
+        <p class="card-text">Category : {{x.category}}</p>
+        <p class="card-text">Created at : {{x.created_at}}</p>
+        <a href="{%url 'blogapp:blogdetails' pk=x.pk%}" class="btn btn-primary">Read</a>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+</div>
+{%empty%}
+<h1>NONE</h1>
+{%if user.is_authenticated%}
+<p><a href="{%url 'blogapp:create_blog'%}"><button class="btn btn-outline-info">Add One!</button></a> </p>
+{%endif%}
+{%endfor%}
+<br>
+<br>
+
+
+
+<!-- Lifestyle and Hobbies Blogs -->
+
+
+<div class="container">
+  <h1><b><i>Lifestyle and Hobbies : </i></b></h1>
+  {%for x in lifestyle_and_hobbies_blogs%}
+  <div class="row" display="flex">
+    <div class="card" style="width: 18rem;">
+      <img src="/media/{{x.blog_pic}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Title : {{x.title}}</h5>
+        <p class="card-text">Author : {{x.author}}</p>
+        <p class="card-text">Category : {{x.category}}</p>
+        <p class="card-text">Created at : {{x.created_at}}</p>
+        <a href="{%url 'blogapp:blogdetails' pk=x.pk%}" class="btn btn-primary">Read</a>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+</div>
+{%empty%}
+<h1>NONE</h1>
+{%if user.is_authenticated%}
+<p><a href="{%url 'blogapp:create_blog'%}"><button class="btn btn-outline-info">Add One!</button></a> </p>
+{%endif%}
+{%endfor%}
+<br>
+<br>
+
+<!--  Other Blogs -->
+
+
+<div class="container">
+  <h1><b><i>Other : </i></b></h1>
+  {%for x in other_blogs%}
+  <div class="row" display="flex">
+    <div class="card" style="width: 18rem;">
+      <img src="/media/{{x.blog_pic}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Title : {{x.title}}</h5>
+        <p class="card-text">Author : {{x.author}}</p>
+        <p class="card-text">Category : {{x.category}}</p>
+        <p class="card-text">Created at : {{x.created_at}}</p>
+        <a href="{%url 'blogapp:blogdetails' pk=x.pk%}" class="btn btn-primary">Read</a>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+</div>
+{%empty%}
+<h1>NONE</h1>
+{%if user.is_authenticated%}
+<p><a href="{%url 'blogapp:create_blog'%}"><button class="btn btn-outline-info">Add One!</button></a> </p>
+{%endif%}
+{%endfor%}
+<br>
+<br>
+
+
+
+
+
+
 
 
 

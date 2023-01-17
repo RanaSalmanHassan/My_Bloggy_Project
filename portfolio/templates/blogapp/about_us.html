@@ -1,0 +1,36 @@
+{%extends 'base.html'%}
+
+{%block titleblock%}
+About Blogging Hub!
+{%endblock%}
+
+{%block bodyblock%}
+
+<div class="container">
+
+    <div class="container">
+        <h1><b><i>What is Blogging Hub?</i></b></h1>
+        <p>Blogging Hub is the place you can publish your articles
+            or personal stories about differnet topics like finance,technology,science!
+            You can also read articles from other authors who have shared their knowlege
+            and experience on Blogging Hub!</p>
+    </div>
+
+    <div class="container">
+        <h1><b><i>Get Started!</i></b></h1>
+        <p>Start writing articles and blogs by simply signing up for free! There`s no limit to your articles 
+            and you can write as many articles you want! 
+        </p>
+        {%if user.is_authenticated%}
+        {%else%}
+        
+        <span>Sign Up : <a href="{%url 'loginapp:signup'%}">Click Here!</a></span>
+        <br>
+        <span>Login : <a href="{%url 'loginapp:login'%}">Click Here!</a></span>
+        {%endif%}
+    </div>
+
+
+
+</div>
+{%endblock%}

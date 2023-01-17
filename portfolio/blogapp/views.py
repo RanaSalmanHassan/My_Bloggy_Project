@@ -1,8 +1,8 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect, redirect
-from .forms import Create_Blog_Form, Comment_Form,Edit_Blog_Form
-from django.urls import reverse,reverse_lazy
+from .forms import Create_Blog_Form, Comment_Form, Edit_Blog_Form, Contact_Form
+from django.urls import reverse, reverse_lazy
 from django.contrib import messages
-from django.views.generic import ListView, DetailView, CreateView,UpdateView,TemplateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, TemplateView, DeleteView
 from .models import Blog, Comment
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
@@ -25,84 +25,105 @@ def create_blog(request):
     return render(request, 'blogapp/create_blog.html', dict)
 
 
-class BlogHome(ListView):
-    model = Blog
-    template_name = 'blogapp/home.html'
+def BlogHome(request):
+    buissness_blogs = Blog.objects.filter(category='Buissness')
+    technology_blogs = Blog.objects.filter(category='Technology')
+    health_blogs = Blog.objects.filter(category='Health')
+    fitness_blogs = Blog.objects.filter(category='Fitness')
+    science_blogs = Blog.objects.filter(category='Science')
+    education_blogs = Blog.objects.filter(category= 'Education')
+    news_blogs = Blog.objects.filter(category='News')
+    entertainment_blogs = Blog.objects.filter(category='Entertainment')
+    gaming_blogs = Blog.objects.filter(category='Gaming')
+    lifestyle_and_hobbies_blogs = Blog.objects.filter(
+        category='Lifestyle and hobbies')
+    other_blogs = Blog.objects.filter(category='Other')
+    dict = {'buissness_blogs': buissness_blogs,
+            'technology_blogs': technology_blogs,
+            'health_blogs': health_blogs,
+            'fitness_blogs': fitness_blogs,
+            'science_blogs': science_blogs,
+            'education_blogs': education_blogs,
+            'news_blogs': news_blogs,
+            'entertainment_blogs': entertainment_blogs,
+            'gaming_blogs': gaming_blogs,
+            'lifestyle_and_hobbies_blogs': lifestyle_and_hobbies_blogs,
+            'other_blogs': other_blogs,
+            }
+    return render(request, 'blogapp/home.html', dict)
 
 
-class BlogDetails(DetailView):
-    model = Blog
-    template_name = 'blogapp/blog_details.html'
+# class BlogDetails(DetailView):
+#     model = Blog
+#     template_name = 'blogapp/blog_details.html'
+
+def BlogDetails(request, pk):
+    blog_model = Blog.objects.get(pk=pk)
+    comment_model = Comment.objects.filter(blog = blog_model)
+    form = Comment_Form()
+    if request.method == 'POST':
+        form = Comment_Form(request.POST)
+        if form.is_valid():
+            comment_boi = form.save(commit=False)
+            comment_boi.user = request.user
+            comment_boi.blog = blog_model
+            comment_boi.save()
+            messages.success(
+                request, 'Congratulation! Your Comment Has Been Added!!')
+            return HttpResponseRedirect(reverse('blogapp:blogdetails', kwargs={'pk': pk}))
+
+    dict = {'blog_model': blog_model, 'form': form,
+        'comment_model': comment_model}
+    return render(request, 'blogapp/blog_details.html', dict)
 
 
-def searched_blogs(request):
+def searched_blogs_by_title(request):
     search = request.GET['search']
     searched_blogs = Blog.objects.filter(title__icontains=search)
-    dict = {'searched_blogs':searched_blogs}
-    return render(request,'blogapp/search.html',dict)
+    dict = {'searched_blogs': searched_blogs}
+    return render(request, 'blogapp/search_by_title.html', dict)
 
-    
+
+def searched_blogs_by_category(request):
+    search = request.GET['search']
+    searched_blogs = Blog.objects.filter(category__icontains=search)
+    dict = {'searched_blogs': searched_blogs}
+    return render(request, 'blogapp/searched_by_category.html', dict)
+
+
 class Edit_Blog(UpdateView):
     model = Blog
-    fields = ('title','blog_pic','content')
+    fields = ('title', 'blog_pic', 'content')
     template_name = 'blogapp/edit_blog.html'
 
     def get_success_url(self):
         return reverse_lazy('blogapp:myblogs')
 
 
+class Delete_Blog(DeleteView):
+    model = Blog
+    template_name = "blogapp/blog_confirm_delete.html"
+
+    def get_success_url(self):
+        return reverse_lazy('blogapp:myblogs')
+
+
+
 class MyBlog(LoginRequiredMixin,TemplateView):
     template_name = 'blogapp/myblogs.html'
-# def Edit_Blog(request):
-#     form = Edit_Blog_Form
-#     if request.method =='POST':
-#         form = Edit_Blog_Form(request.POST)
-#         if form.is_valid():
-#             blog = form.save(commit=False)
-#             blog.author = request.user
-#             blog.save()
-#             messages.success(request,'Your Blog is Updated!')
-#     dict = {'form':form}
-#     return render(request,'blogapp/edit_blog.html',dict)    
-
-# def My_Blogs(request):
-#     return render(request,'blogapp/myblogs.html')         
-    # def add_comment(request, pk):
-    #     form = Comment_Form(request.POST or None)
-    #     if request.method == 'POST':
-    #         if form.is_valid():
-    #             commentboi = form.save(commit=False)
-    #             commentboi.blog = Blog.objects.get(pk=pk)
-    #             commentboi.user = request.user
-    #             commentboi.save()
-    #             return HttpResponse(request, 'good')
-    #     return render(request, 'blogapp/blog_details.html', {'form': form})
-
-# def Comment_View(request):
-#     form = Comment_Form
-#     if request.method =='POST':
-#         form = Comment_Form(request.POST)
-#         if form.is_valid():
-# class Comment_View(CreateView):
-#     model = Comment
-#     form_class = Comment_Form
-#     template_name = 'blogapp/comments.html'
-
-#     def form_valid(self, form):
-#         form.instance.owner = self.request.user
-#         return super(Comment_View, self).form_valid(form)
-
-#     def get_success_url(self):
-#         blog = Blog.objects.get(pk=self.kwargs.get('pk'))
-#         return HttpResponseRedirect(reverse('blogapp:bloghome'))
 
 
-# def add_comment(request):
-#     form = Comment_Form
-#     if request.method =='POST':
-#         form = Comment_Form(request.POST)
-#         def form_valid(self,form):
-#             form.instance.blog_id = self.kwargs['pk']
-#             return super().form_valid(form)
-#         return HttpResponseRedirect(reverse('blogapp:blogdetails'))
-#     return rend
+
+def about_us(request):
+    return render(request,'blogapp/about_us.html')
+
+def contact(request):
+    form = Contact_Form
+    if request.method == 'POST':
+        form = Contact_Form(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Thanks for your feeedback!')
+            return HttpResponseRedirect(reverse('blogapp:bloghome'))
+    dict = {'form':form}
+    return render(request,'blogapp/contact.html',dict)

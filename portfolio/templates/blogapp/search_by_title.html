@@ -17,6 +17,7 @@ Searched Blogs
         <a href="{%url 'blogapp:blogdetails' pk=blog.pk%}" class="btn btn-primary">Read</a>
     </div>
 </div>
-
+{%empty%}
+<h1>None Blogs!</h1>
 {%endfor%}
 {%endblock%}
